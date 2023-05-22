@@ -1,7 +1,7 @@
 import csv
 
 # Open the input CSV file and read the data
-with open('/test_file/05202023.csv', 'r') as infile:
+with open('test_file/05122023.csv', 'r') as infile:
     reader = csv.reader(infile)
     data = [list(map(float, row)) for row in reader]
 
@@ -11,6 +11,6 @@ for row in data:
     row.append(sum(row[:6]) / 6)
 
 # Open the output CSV file and write the data
-with open('/test_file/05202023_output.csv', 'w', newline='') as outfile:
+with open('test_file/05122023_output.csv', 'w', newline='') as outfile:
     writer = csv.writer(outfile)
     writer.writerows(data)
