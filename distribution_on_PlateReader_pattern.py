@@ -2,7 +2,7 @@ import csv
 from itertools import islice
 
 # Open the input CSV file and read the data
-with open('test_file/05272023.csv', 'r') as infile:
+with open('test_file/06222023.csv', 'r') as infile:
     reader = csv.reader(infile)
     data = [list(map(float, row)) for row in reader]
 # column numbers for each record
@@ -27,7 +27,7 @@ for row in output_data:
             row[0][i].append(" ")
             
 # Open the output CSV file and write the output data
-with open('test_file/05272023_output.csv', 'w', newline='') as outfile:
+with open('test_file/06222023_output_1.csv', 'w', newline='') as outfile:
     writer = csv.writer(outfile)
     for row in output_data:
         writer.writerows(row[0])
