@@ -1,0 +1,19 @@
+‘SEM HV: 10.0 kV
+
+Wo: 9.55 mm
+
+Livitiiis MIRA3 TESCAN
+
+View field: 2.26 um
+
+Det: SE
+
+‘SEM MAG: 61.2 kx
+
+Date(midly): 06/30/23
+
+500 nm
+
+Performance in nanospace
+
+
