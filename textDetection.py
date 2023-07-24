@@ -1,9 +1,10 @@
 # Import required packages
 import cv2
 import pytesseract
-
+# Homebrew is required if you want to run pytesseract on MacOS machine.
 # Mention the installed location of Tesseract-OCR in your system
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+
 
 # Read image from which text needs to be extracted
 img = cv2.imread("test_img/hole1.tif")
