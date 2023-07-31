@@ -2,7 +2,6 @@ import numpy as np
 import cv2
 import math
 from matplotlib import pyplot as plt
-from scipy import spatial
 
 def euclidean_distance(point1, point2):
     return math.sqrt((point2[0] - point1[0])**2 + (point2[1] - point1[1])**2)
@@ -26,15 +25,14 @@ def plot_distribution(data_array):
     plt.ylabel('Frequency') 
     plt.xticks([np.min(data_array),np.mean(data_array),np.max(data_array)])
 
-img = cv2.imread('test_img/test3.tif', 0)
+img = cv2.imread('test_img/front/Phosp-1hr-front-02.tif', 0)
 content_img = img[0:512, 0:512]
 text_img = img[513:572,0:512]
-kernel = np.ones((5,5), np.uint8)
-edges = cv2.Canny(content_img,190,240)
+kernel = np.ones((3,3), np.uint8)
+content_blur = cv2.GaussianBlur(content_img, (3,3), 0)
+img_binary = cv2.threshold(content_blur, 155, 255, cv2.THRESH_BINARY)[1]
+edges = cv2.Canny(img_binary,100,200)
 dilate = cv2.dilate(edges,kernel,iterations=1)
-# dilate=cv2.bitwise_not(dilate)
-# BnW_text_image = cv2.adaptiveThreshold(text_img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
-#     cv2.THRESH_BINARY,11,2)
 
 cnts = cv2.findContours(dilate, cv2.RETR_LIST,
                     cv2.CHAIN_APPROX_SIMPLE)[-2]
@@ -56,10 +54,7 @@ for cnt in cnts:
 xcnts_closest_points=find_closest_points(xcnts)
 for i in range(len(xcnts)):
     xcnts_distance.append(euclidean_distance(xcnts[i],xcnts_closest_points[i]))
-print(xcnts[0])
-print(xcnts_area[0])
-print(xcnts_distance[0])
-plt.figure(1)
+plt.figure('result')
 plt.subplot(221),plt.imshow(content_img,cmap = 'gray')
 plt.title('Original Image'), plt.xticks([]), plt.yticks([])
 plt.subplot(222),plt.imshow(dilate,cmap = 'gray')
