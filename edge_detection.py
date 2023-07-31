@@ -26,11 +26,11 @@ def plot_distribution(data_array):
     plt.ylabel('Frequency') 
     plt.xticks([np.min(data_array),np.mean(data_array),np.max(data_array)])
 
-img = cv2.imread('test_img/hole1.tif', 0)
+img = cv2.imread('test_img/test3.tif', 0)
 content_img = img[0:512, 0:512]
 text_img = img[513:572,0:512]
-kernel = np.ones((3,3), np.uint8)
-edges = cv2.Canny(content_img,125,200)
+kernel = np.ones((5,5), np.uint8)
+edges = cv2.Canny(content_img,190,240)
 dilate = cv2.dilate(edges,kernel,iterations=1)
 # dilate=cv2.bitwise_not(dilate)
 # BnW_text_image = cv2.adaptiveThreshold(text_img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
