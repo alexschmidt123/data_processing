@@ -26,7 +26,7 @@ def plot_distribution(data_array):
     plt.ylabel('Frequency') 
     plt.xticks([np.min(data_array),np.mean(data_array),np.max(data_array)])
 
-img_path='test_img/back/Phosp-2hr-back-03.tif'
+img_path='test_img/front/Phosp-3hr-front-03.tif'
 img = cv2.imread(img_path, 0)
 content_img = img[0:512, 0:512]
 text_img = img[513:550,257:423]
@@ -43,7 +43,8 @@ for pixel in pixels:
 scale_bar=max_x-min_x
 kernel = np.ones((3,3), np.uint8)
 content_blur = cv2.GaussianBlur(content_img, (3,3), 0)
-edges = cv2.Canny(content_blur,100,200)
+# edges = cv2.Canny(content_blur,24,200)
+ret, edges=cv2.threshold(content_blur,75,255,cv2.THRESH_BINARY_INV)
 close = cv2.morphologyEx(edges,cv2.MORPH_CLOSE,kernel,iterations=3)
 result = cv2.morphologyEx(edges,cv2.MORPH_CLOSE,kernel,iterations=3)
 cnts = cv2.findContours(result, cv2.RETR_LIST,

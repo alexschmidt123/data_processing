@@ -1,6 +1,6 @@
 import cv2 as cv
 import argparse
-max_lowThreshold = 100
+max_lowThreshold = 200
 window_name = 'Edge Map'
 title_trackbar = 'Min Threshold:'
 ratio = 3
@@ -13,7 +13,7 @@ def CannyThreshold(val):
     dst = src * (mask[:,:,None].astype(src.dtype))
     cv.imshow(window_name, dst)
 parser = argparse.ArgumentParser(description='Code for Canny Edge Detector tutorial.')
-parser.add_argument('--input', help='Path to input image.', default='test_img/test3.tif')
+parser.add_argument('--input', help='Path to input image.', default='test_img/front/Phosp-1hr-front-04.tif')
 args = parser.parse_args()
 src = cv.imread(cv.samples.findFile(args.input))
 if src is None:
