@@ -1,7 +1,8 @@
 import numpy as np
 import cv2
 import math
-from matplotlib import image, pyplot as plt
+from textDetection import textDetection
+from matplotlib import pyplot as plt
 
 def euclidean_distance(point1, point2):
     return math.sqrt((point2[0] - point1[0])**2 + (point2[1] - point1[1])**2)
@@ -29,6 +30,7 @@ img_path='test_img/back/Phosp-1hr-back-02.tif'
 img = cv2.imread(img_path, 0)
 content_img = img[0:512, 0:512]
 text_img = img[513:550,257:423]
+text=textDetection(text_img)
 scale=cv2.threshold(text_img, 100, 255, cv2.THRESH_BINARY)[1]
 pixels=np.argwhere(scale == 255)
 max_x = 1

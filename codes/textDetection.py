@@ -1,4 +1,3 @@
-# Import required packages
 import cv2
 import pytesseract
 
