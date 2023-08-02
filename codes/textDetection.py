@@ -15,11 +15,8 @@ def textDetection(img):
 	result=[]
 	for cnt in contours:
 		x, y, w, h = cv2.boundingRect(cnt)
-		# Drawing a rectangle on copied image
 		rect = cv2.rectangle(im2, (x, y), (x + w, y + h), (0, 255, 0), 2)
-		# Cropping the text block for giving input to OCR
 		cropped = im2[y:y + h, x:x + w]
-		# Open the file in append mode
-		# Apply OCR on the cropped image
 		text = pytesseract.image_to_string(cropped)
 		result.append(text)
+	return result
