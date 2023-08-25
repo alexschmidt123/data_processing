@@ -2,13 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 # temperature is 25°C
 # time unit is minute, R_tot and L_tot's concentration unit are both M
-dt = 0.1*1/60
+dt = 0.001*1/60
 # n is the time we repeat this loop
-n = 100
+n = 1000
 # k_on unit is M^(-1)min^(-1), k_off unit is min^(-1)
 k_on = 10**7
 k_off = 0.033
-R_tot = 30*10**(-9)
+R_tot = 40*10**(-9)
 L_tot = 30*10**(-9)
 data = np.zeros((n,))
 rl = 0
