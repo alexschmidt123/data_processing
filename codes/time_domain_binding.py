@@ -2,14 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 # temperature is 25°C
 # time unit is minute, R_tot and L_tot's concentration unit are both M
-dt = 0.001*1/60
+dt = 1
 # n is the time we repeat this loop
-n = 1000
-# k_on unit is M^(-1)min^(-1), k_off unit is min^(-1)
-k_on = 10**7
-k_off = 0.033
-R_tot = 40*10**(-9)
-L_tot = 30*10**(-9)
+n = 10000
+# k_on unit is M^(-1)s^(-1), k_off unit is s^(-1)
+k_on = 3.29*10**4
+k_off = 2.9*10**(-4)
+R_tot = 60*10**(-9)
+L_tot = 60*10**(-9)
 data = np.zeros((n,))
 rl = 0
 
@@ -36,7 +36,7 @@ print(data)
 t = np.arange(0, n, 1) 
 plt.rcParams["figure.figsize"] = [7.50, 3.50]
 plt.rcParams["figure.autolayout"] = True
-plt.title("RL concentration v.s. time")
+plt.title("RL concentration (M) v.s. time (s)")
 plt.plot(t, data, color="red")
 
 plt.show()
