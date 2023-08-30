@@ -5,7 +5,8 @@ import math
 # time unit is minute, R_tot and L_tot's concentration unit are both M
 dt = 0.00001
 # n is the time we repeat this loop
-n = 10000000
+N = [10**7,10**5,10**3,10**2,10]
+n = 10
 # k_on unit is M^(-1)s^(-1), k_off unit is s^(-1)
 k_on = 5.25*10**6
 k_off = 8*10**(-2)
@@ -50,34 +51,33 @@ for index in range(n):
         rl3 = 0
         rl4 = 0
         rl5 = 0
-        data1[index]=rl1
-        data2[index]=rl2
-        data3[index]=rl3
-        data4[index]=rl4
-        data5[index]=rl5
+        data1[index]=R_tot-rl1
+        data2[index]=R_tot-rl2
+        data3[index]=R_tot-rl3
+        data4[index]=R_tot-rl4
+        data5[index]=R_tot-rl5
     else:
         rl1 = rl1 + (k_on*rl1**2-B1*rl1+A1)*dt
         rl2 = rl2 + (k_on*rl2**2-B2*rl2+A2)*dt
         rl3 = rl3 + (k_on*rl3**2-B3*rl3+A3)*dt
         rl4 = rl4 + (k_on*rl4**2-B4*rl4+A4)*dt
         rl5 = rl5 + (k_on*rl5**2-B5*rl5+A5)*dt
-        data1[index]=rl1
-        data2[index]=rl2
-        data3[index]=rl3
-        data4[index]=rl4
-        data5[index]=rl5
+        data1[index]=R_tot-rl1
+        data2[index]=R_tot-rl2
+        data3[index]=R_tot-rl3
+        data4[index]=R_tot-rl4
+        data5[index]=R_tot-rl5
 
 
 
 t = np.arange(0, n, 1) 
 plt.rcParams["figure.figsize"] = [7.50, 3.50]
 plt.rcParams["figure.autolayout"] = True
-plt.title("RL concentration (M) v.s. time (0.00001s)")
-plt.plot(t, data1, color="green")
-plt.plot(t, data2, color="blue")
-plt.plot(t, data3, color="yellow")
-plt.plot(t, data4, color="purple")
-plt.plot(t, data5, color="orange")
+plt.title("R concentration (M) v.s. time (0.00001s)")
+plt.plot(t, data1, color="red")
+plt.plot(t, data2, color="orange")
+plt.plot(t, data3, color="green")
+plt.plot(t, data4, color="blue")
+plt.plot(t, data5, color="purple")
 plt.legend(['0.05nM', '0.5nM','5nM','50nM','500nM'])
 plt.show()
-
