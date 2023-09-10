@@ -11,7 +11,7 @@ k_on = 5.25*10**6
 k_off = 8*10**(-2)
 R_tot = 0.5*10**(-9)
 L_tot=[0.05,0.5,5,50,500]
-L_tot_e=L_tot[0]
+L_tot_e=L_tot[4]
 L_tot1 = L_tot_e*10**(-9)
 A1 = k_on*R_tot*L_tot1
 B1 = k_on*(R_tot+L_tot1)+k_off
@@ -34,6 +34,7 @@ for i in range(len(N)):
     plt.xlabel("Time(*0.0001s)")
     plt.ylabel("[L](M)")
     plt.plot(t, data)
+    plt.ticklabel_format(useOffset=False)
 plt.suptitle("[L] v.s. t Plot, when [L_tot]=%s nM" %(L_tot_e),style="italic",fontsize=15)
 plt.tight_layout(pad=0.5)
 plt.show()
