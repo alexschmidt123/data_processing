@@ -5,8 +5,8 @@ import math
 # time unit is minute, R_tot and L_tot's concentration unit are both mol/m^3
 dt = 0.001
 # n is the time we repeat this loop
-N = [10**6,10**4,10**2,10]
-n = N[3]
+N = [10**8,10**6,10**4,10**2,10]
+n = N[0]
 # k_on unit is m^3mol^(-1)s^(-1), k_off unit is s^(-1)
 S=5*10**(-5)
 V=4*10**(-8)
@@ -76,11 +76,11 @@ for index in range(n):
 t = np.arange(0, n, 1) 
 plt.rcParams["figure.figsize"] = [7.50, 3.50]
 plt.rcParams["figure.autolayout"] = True
-plt.title("RL surface concentration (mol/m^2) v.s. T (0.001s)")
+plt.title("RL surface concentration (mol/m^2) v.s. T (0.001s) no flowing")
 plt.plot(t, data1, color="red")
 plt.plot(t, data2, color="orange")
 plt.plot(t, data3, color="green")
 plt.plot(t, data4, color="blue")
 plt.plot(t, data5, color="purple")
-# plt.legend(['[C_L_tot]=0.02586*10^(-5)mol/m^3', '[C_L_tot]=0.2586*10^(-5)mol/m^3','[C_L_tot]=2.586*10^(-5)mol/m^3','[C_L_tot]=25.86*10^(-5)mol/m^3','[C_L_tot]=258.6*10^(-5)mol/m^3'])
+plt.legend(['[C_L_tot]=0.02586*10^(-5)mol/m^3', '[C_L_tot]=0.2586*10^(-5)mol/m^3','[C_L_tot]=2.586*10^(-5)mol/m^3','[C_L_tot]=25.86*10^(-5)mol/m^3','[C_L_tot]=258.6*10^(-5)mol/m^3'])
 plt.show()

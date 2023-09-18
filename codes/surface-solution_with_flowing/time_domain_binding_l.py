@@ -13,24 +13,23 @@ k_on = 32.9
 k_off = 2.9*10**(-4)
 R_tot = 2.069*10**(-8)
 L_tot=[0.02586,0.2586,2.586,25.86,258.6]
-L_tot_e=L_tot[0]
+L_tot_e=L_tot[4]
 L_tot1 = L_tot_e*10**(-5)
-C = k_on*S/V
 A1 = k_on*R_tot*L_tot1
-B1 = k_on*(R_tot*S/V+L_tot1)+k_off
+B1 = k_on*L_tot1+k_off
 data1 = np.zeros((N[0],))
 
-rl_eq = (B1-math.sqrt(B1**2-4*A1*C))/(2*C)
+rl_eq = A1/B1
 t_half = 0
 for index in range(N[0]):
     if index == 0:
         rl1 = 0
-        data1[index]=L_tot1-rl1*S/V
+        data1[index]=rl1
     else:
         if rl1<=rl_eq/2:
             t_half=index
-        rl1 = rl1 + (C*rl1**2-B1*rl1+A1)*dt
-        data1[index]=L_tot1-rl1*S/V
+        rl1 = rl1 + (-B1*rl1+A1)*dt
+        data1[index]=rl1
 for i in range(len(N)):
     plt.subplot(2,2, i+1)
     t = np.arange(0,N[i],1)
@@ -39,19 +38,18 @@ for i in range(len(N)):
     plt.ylabel("[L](mol/m^3)")
     plt.plot(t, data)
     plt.ticklabel_format(useOffset=False)
-plt.suptitle("[L] v.s. t Plot, when [L_tot]=%s*10^(-5) mol/m^3 no flowing" %(L_tot_e),style="italic",fontsize=15)
-l_d= data1[10**8-1]
-rl_d = (L_tot1-data1[10**8-1])*V/S
+plt.suptitle("[L] v.s. t Plot, when [L_tot]=%s*10^(-5) mol/m^3 with flowing" %(L_tot_e),style="italic",fontsize=15)
+l_d= L_tot1
+rl_d = data1[10**8-1]
 r_d = R_tot-rl_d
 k_d= r_d*l_d/rl_d
-l_d1= data1[5*t_half]
-rl_d1 = (L_tot1-data1[5*t_half])*V/S
+l_d1= L_tot1
+rl_d1 = data1[5*t_half]
 r_d1 = R_tot-rl_d1
 k_d1= r_d1*l_d1/rl_d1
 
 print(k_off/k_on)
 print(k_d)
 print(k_d1)
-# plt.show()
 
 
